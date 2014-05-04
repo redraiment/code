@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+    <title>代码大全</title>
+
+    <link rel="shortcut icon" type="image/png" href="images/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="images/fav-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="images/fav-114x114.png" />
+
+    <link type="text/css" rel="stylesheet" href="styles/reset.css" />
+    <link type="text/css" rel="stylesheet" href="styles/jquery.chosen.css" />
+    <link type="text/css" rel="stylesheet" href="styles/ztree.css" />
+    <link type="text/css" rel="stylesheet" href="styles/main.css" />
+
+    <link id="code-theme" type="text/css" rel="stylesheet" href="styles/highlight/default.css" />
+  </head>
+  <body>
+    <aside class="left">
+      <h1>问题分类</h1>
+      <menu>
+        <menuitem class="expand">展开</menuitem>
+        <menuitem class="collapse">收拢</menuitem>
+        <menuitem class="add">添加</menuitem>
+        <menuitem class="delete">删除</menuitem>
+        <menuitem class="edit">编辑</menuitem>
+      </menu>
+      <ul id="issues" class="ztree"></ul>
+    </aside>
+
+    <aside class="right">
+      <h1>工具分类</h1>
+      <menu>
+        <menuitem class="all">全选</menuitem>
+        <menuitem class="inverse">反选</menuitem>
+        <menuitem class="expand">展开</menuitem>
+        <menuitem class="collapse">收拢</menuitem>
+        <menuitem class="add">添加</menuitem>
+        <menuitem class="delete">删除</menuitem>
+        <menuitem class="edit">编辑</menuitem>
+      </menu>
+      <ul id="tools" class="ztree"></ul>
+    </aside>
+
+    <article>
+      <header>
+        <h1>斐波那契数列</h1>
+        <select id="theme">
+          <option>autumn</option>
+          <option>borland</option>
+          <option>bw</option>
+          <option>colorful</option>
+          <option selected="selected">default</option>
+          <option>emacs</option>
+          <option>friendly</option>
+          <option>fruity</option>
+          <option>manni</option>
+          <option>monokai</option>
+          <option>murphy</option>
+          <option>native</option>
+          <option>pastie</option>
+          <option>perldoc</option>
+          <option>rrt</option>
+          <option>tango</option>
+          <option>trac</option>
+          <option>vim</option>
+          <option>vs</option>
+        </select>
+      </header>
+
+      <section>
+        <h1>问题描述</h1>
+        <p>在数学上，斐波那契数列是以递归的方法来定义：</p>
+        <ul>
+          <li>F<sub>0</sub> = 0</li>
+          <li>F<sub>1</sub> = 1</li>
+          <li>F<sub>n</sub> = F<sub>n-1</sub> + F<sub>n-2</sub>(n≥2)</li>
+        </ul>
+        <p>用文字来说，就是斐波那契数列由0和1开始，之后的斐波那契系数就由之前的两数相加。首几个斐波那契系数是：</p>
+        <p>0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946，……</p>
+        <p><strong>特别指出</strong>：<code>0</code>不是第一项，而是第零项。<code>Java</code></p>
+      </section>
+
+      <section>
+        <h1>Java</h1>
+        <div>
+          <label>版本：</label>
+          <select class="version">
+            <option value="0">3</option>
+            <option value="1">2</option>
+            <option value="2">1</option>
+          </select>
+          <button>Fork</button>
+          <button>Edit</button>
+        </div>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span></pre></div></td></tr></table>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span></pre></div></td></tr></table>
+        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>3</pre></div></td><td class="code"><div class="highlight"><pre>        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span></pre></div></td></tr></table>
+        <p>变更日志：</p>
+        <p>[2014-01-20 01:23:45] <a rel="nofollow" target="_blank" href="http://weibo.com/redraiment">@redraiment</a></p>
+        <blockquote>init password</blockquote>
+        <p>[2014-01-23 01:23:45] <a rel="nofollow" target="_blank" href="http://weibo.com/redraiment">@redraiment</a></p>
+        <blockquote>Hello world</blockquote>
+      </section>
+
+      <section>
+        <table id="workspace">
+          <caption>解决方案</caption>
+          <thead>
+            <tr>
+              <td>
+                <select id="syntax">
+                  <option>Java</option>
+                  <option>JavaScript</option>
+                  <option>XML</option>
+                </select>
+              </td>
+              <td>
+                <select id="tags" multiple="multiple">
+                  <option>Java</option>
+                  <option>JavaScript</option>
+                  <option>XML</option>
+                </select>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><textarea></textarea></td>
+              <td><textarea></textarea></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td></td>
+              <td><button>Commit</button></td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+
+    </article>
+
+    <script type="text/javascript" src="scripts/jquery.js"></script>
+    <script type="text/javascript" src="scripts/jquery.chosen.js"></script>
+    <script type="text/javascript" src="scripts/jquery.ztree.js"></script>
+    <script type="text/javascript" src="scripts/main.js"></script>
+  </body>
+</html>
