@@ -21,7 +21,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>view-users</servlet-name>
-    <url-pattern>/users</url-pattern>
+    <url-pattern>/view-users</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Dispatcher</servlet-name>
