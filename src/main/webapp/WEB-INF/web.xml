@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app metadata-complete="false" version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-    <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
-    </welcome-file-list>
+  <display-name>code</display-name>
+  <servlet>
+    <servlet-name>static-files</servlet-name>
+    <servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>view-users</servlet-name>
+    <jsp-file>/views/users.jsp</jsp-file>
+  </servlet>
+  <servlet>
+    <servlet-name>Dispatcher</servlet-name>
+    <servlet-class>me.zzp.code.Dispatcher</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>static-files</servlet-name>
+    <url-pattern>/images/*</url-pattern>
+    <url-pattern>/styles/*</url-pattern>
+    <url-pattern>/scripts/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>view-users</servlet-name>
+    <url-pattern>/users</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Dispatcher</servlet-name>
+    <url-pattern>/*</url-pattern>
+  </servlet-mapping>
+  <session-config>
+    <session-timeout>
+      30
+    </session-timeout>
+  </session-config>
+  <welcome-file-list>
+    <welcome-file>users</welcome-file>
+  </welcome-file-list>
 </web-app>

@@ -1,3 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -44,7 +47,7 @@
 
     <article>
       <header>
-        <h1>斐波那契数列</h1>
+        <h1>${issue.get("name")}</h1>
         <select id="theme">
           <option>autumn</option>
           <option>borland</option>
@@ -70,17 +73,14 @@
 
       <section>
         <h1>问题描述</h1>
-        <p>在数学上，斐波那契数列是以递归的方法来定义：</p>
-        <ul>
-          <li>F<sub>0</sub> = 0</li>
-          <li>F<sub>1</sub> = 1</li>
-          <li>F<sub>n</sub> = F<sub>n-1</sub> + F<sub>n-2</sub>(n≥2)</li>
-        </ul>
-        <p>用文字来说，就是斐波那契数列由0和1开始，之后的斐波那契系数就由之前的两数相加。首几个斐波那契系数是：</p>
-        <p>0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946，……</p>
-        <p><strong>特别指出</strong>：<code>0</code>不是第一项，而是第零项。<code>Java</code></p>
+        ${issue.get("description")}
       </section>
 
+      <c:forEach var="solution" items='${issue.get("solutions")}'>
+        <section>
+          
+        </section>
+      </c:forEach>
       <section>
         <h1>Java</h1>
         <div>
@@ -110,9 +110,9 @@
             <tr>
               <td>
                 <select id="syntax">
-                  <option>Java</option>
-                  <option>JavaScript</option>
-                  <option>XML</option>
+                  <c:forEach var="lex" items="${lexers}">
+                    <option value='${lex.get("id")}'>${lex.get("name")}</option>
+                  </c:forEach>
                 </select>
               </td>
               <td>
