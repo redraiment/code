@@ -83,11 +83,12 @@
             <label>版本：</label>
             <select class="version">
               <c:forEach varStatus="status" items="${snippets}">
-                <option>${snippets.size() - status.index}</option>
+                <option value="${status.index}">${snippets.size() - status.index}</option>
               </c:forEach>
             </select>
             <button>改进</button>
             <button>修正</button>
+            <button>引用</button>
           </div>
           <c:forEach var="snippet" items="${snippets}">
             <p>${snippet.code}</p>
@@ -99,28 +100,6 @@
           </c:forEach>
         </section>
       </c:forEach>
-
-      <section>
-        <h1>Java</h1>
-        <div>
-          <label>版本：</label>
-          <select class="version">
-            <option value="0">3</option>
-            <option value="1">2</option>
-            <option value="2">1</option>
-          </select>
-          <button>改进</button>
-          <button>修正</button>
-        </div>
-        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span></pre></div></td></tr></table>
-        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span></pre></div></td></tr></table>
-        <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>3</pre></div></td><td class="code"><div class="highlight"><pre>        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span></pre></div></td></tr></table>
-        <p>变更日志：</p>
-        <p>[2014-01-20 01:23:45] <a rel="nofollow" target="_blank" href="http://weibo.com/redraiment">@redraiment</a></p>
-        <blockquote>init password</blockquote>
-        <p>[2014-01-23 01:23:45] <a rel="nofollow" target="_blank" href="http://weibo.com/redraiment">@redraiment</a></p>
-        <blockquote>Hello world</blockquote>
-      </section>
 
       <section>
         <table id="workspace">
