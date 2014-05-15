@@ -3,7 +3,6 @@ package me.zzp.code.bean;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 import me.zzp.ar.Record;
@@ -20,12 +19,12 @@ public abstract class Model implements Serializable {
     return model.get("id");
   }
   
-  public Timestamp getCreatedAt() {
-    return model.get("created_at");
+  public String getCreatedAt() {
+    return model.get("created_at").toString();
   }
 
-  public Timestamp getUpdatedAt() {
-    return model.get("updated_at");
+  public String getUpdatedAt() {
+    return model.get("updated_at").toString();
   }
   
   protected <E extends Model> E one(String key, Class<E> type) {
@@ -38,13 +37,12 @@ public abstract class Model implements Serializable {
       return null;
     }
   }
-
-  protected <E extends Model> List<E> list(String key, Class<E> type) {
+  
+  protected <E extends Model> List<E> map(List<Record> records, Class<E> type) {
     try {
       Constructor<E> fn = type.getConstructor(Record.class);
       List<E> list = new LinkedList<>();
-      Table table = model.get(key);
-      for (Record record : table.all()) {
+      for (Record record : records) {
         list.add(fn.newInstance(record));
       }
       return list;
@@ -52,5 +50,11 @@ public abstract class Model implements Serializable {
       System.err.println(e.getMessage());
       return null;
     }
+
+  }
+
+  protected <E extends Model> List<E> list(String key, Class<E> type) {
+    Table table = model.get(key);
+    return map(table.all(), type);
   }
 }

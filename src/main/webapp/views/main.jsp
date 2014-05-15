@@ -1,19 +1,21 @@
 <!DOCTYPE html>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" /> 
-    <title>代码大全</title>
+    <meta charset="UTF-8" /> 
+    <title>${issue.name} - 代码大全</title>
 
-    <link rel="shortcut icon" type="image/png" href="images/fav.png" />
-    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="images/fav-57x57.png" />
-    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="images/fav-114x114.png" />
+    <link rel="shortcut icon" type="image/png" href="<c:url value="/images/fav.png" />" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="<c:url value="/images/fav-57x57.png" />" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="<c:url value="/images/fav-114x114.png" />" />
 
-    <link type="text/css" rel="stylesheet" href="styles/reset.css" />
-    <link type="text/css" rel="stylesheet" href="styles/jquery.chosen.css" />
-    <link type="text/css" rel="stylesheet" href="styles/ztree.css" />
-    <link type="text/css" rel="stylesheet" href="styles/main.css" />
+    <link type="text/css" rel="stylesheet" href="<c:url value="/styles/reset.css" />" />
+    <link type="text/css" rel="stylesheet" href="<c:url value="/styles/jquery.chosen.css" />" />
+    <link type="text/css" rel="stylesheet" href="<c:url value="/styles/ztree.css" />" />
+    <link type="text/css" rel="stylesheet" href="<c:url value="/styles/main.css" />" />
 
-    <link id="code-theme" type="text/css" rel="stylesheet" href="styles/highlight/default.css" />
+    <link id="code-theme" type="text/css" rel="stylesheet" href="<c:url value="/styles/highlight/default.css" />" />
   </head>
   <body>
     <aside class="left">
@@ -44,7 +46,7 @@
 
     <article>
       <header>
-        <h1>斐波那契数列</h1>
+        <h1>${issue.name}</h1>
         <select id="theme">
           <option>autumn</option>
           <option>borland</option>
@@ -70,16 +72,33 @@
 
       <section>
         <h1>问题描述</h1>
-        <p>在数学上，斐波那契数列是以递归的方法来定义：</p>
-        <ul>
-          <li>F<sub>0</sub> = 0</li>
-          <li>F<sub>1</sub> = 1</li>
-          <li>F<sub>n</sub> = F<sub>n-1</sub> + F<sub>n-2</sub>(n≥2)</li>
-        </ul>
-        <p>用文字来说，就是斐波那契数列由0和1开始，之后的斐波那契系数就由之前的两数相加。首几个斐波那契系数是：</p>
-        <p>0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946，……</p>
-        <p><strong>特别指出</strong>：<code>0</code>不是第一项，而是第零项。<code>Java</code></p>
+        ${issue.description}
       </section>
+
+      <c:forEach var="solution" items="${issue.solutions}">
+        <c:set var="snippets" value="${solution.snippets}" />
+        <section>
+          <h1>${solution.title}</h1>
+          <div>
+            <label>版本：</label>
+            <select class="version">
+              <c:forEach varStatus="status" items="${snippets}">
+                <option>${snippets.size() - status.index}</option>
+              </c:forEach>
+            </select>
+            <button>改进</button>
+            <button>修正</button>
+          </div>
+          <c:forEach var="snippet" items="${snippets}">
+            <p>${snippet.code}</p>
+          </c:forEach>
+          <p>变更日志：</p>
+          <c:forEach var="snippet" items="${snippets}">
+            <p>[${snippet.createdAt}] <a rel="nofollow" target="_blank" href="http://weibo.com/redraiment">@${snippet.user.name}</a></p>
+            <blockquote>${snippet.comment}</blockquote>
+          </c:forEach>
+        </section>
+      </c:forEach>
 
       <section>
         <h1>Java</h1>
@@ -110,9 +129,9 @@
             <tr>
               <td>
                 <select id="syntax">
-                  <option>Java</option>
-                  <option>JavaScript</option>
-                  <option>XML</option>
+                  <c:forEach var="lexer" items="${lexers}">
+                    <option value="${lexer.id}">${lexer.name}</option>
+                  </c:forEach>
                 </select>
               </td>
               <td>
@@ -141,9 +160,9 @@
 
     </article>
 
-    <script type="text/javascript" src="scripts/jquery.js"></script>
-    <script type="text/javascript" src="scripts/jquery.chosen.js"></script>
-    <script type="text/javascript" src="scripts/jquery.ztree.js"></script>
-    <script type="text/javascript" src="scripts/main.js"></script>
+    <script type="text/javascript" src="<c:url value="/scripts/jquery.js" />"></script>
+    <script type="text/javascript" src="<c:url value="/scripts/jquery.chosen.js" />"></script>
+    <script type="text/javascript" src="<c:url value="/scripts/jquery.ztree.js" />"></script>
+    <script type="text/javascript" src="<c:url value="/scripts/main.js" />"></script>
   </body>
 </html>

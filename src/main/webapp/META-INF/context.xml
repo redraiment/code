@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/code"/>
+<Context antiJARLocking="true" path="/code">
+  <Resource name="jdbc/datasource"
+            auth="Container"
+            type="javax.sql.DataSource"
+            driverClassName="org.sqlite.JDBC"
+            url="jdbc:sqlite:${catalina.base}${file.separator}code.db"
+            factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"
+  />
+</Context>

@@ -25,9 +25,9 @@ insert into tags (solution_id, tool_id, created_at, updated_at) values (1, 1, cu
 insert into tags (solution_id, tool_id, created_at, updated_at) values (2, 1, current_timestamp, current_timestamp);
 insert into tags (solution_id, tool_id, created_at, updated_at) values (2, 4, current_timestamp, current_timestamp);
 
-insert into snippets (user_id, solution_id, lexer_id, code, comment, created_at, updated_at) values (1, 1, 124, 'Java version 1', 'java v1', current_timestamp, current_timestamp);
-insert into snippets (user_id, solution_id, lexer_id, code, comment, created_at, updated_at) values (1, 1, 124, 'Java version 2', 'java v2', current_timestamp, current_timestamp);
-insert into snippets (user_id, solution_id, lexer_id, code, comment, created_at, updated_at) values (1, 2, 124, 'Java+Hibernate version 1', 'java+orm v1', current_timestamp, current_timestamp);
+insert into snippets (user_id, solution_id, lexer_id, code, comment, created_at, updated_at) values (1, 1, 124, 'public class Main {\n  public static void main(String[]) {\n    System.out.println("Java version 1");\n  }\n}\n', 'java v1', current_timestamp, current_timestamp);
+insert into snippets (user_id, solution_id, lexer_id, code, comment, created_at, updated_at) values (1, 1, 124, '//Java version 2', 'java v2', current_timestamp, current_timestamp);
+insert into snippets (user_id, solution_id, lexer_id, code, comment, created_at, updated_at) values (1, 2, 124, '/* Java+Hibernate version 1 */', 'java+orm v1', current_timestamp, current_timestamp);
 
 insert into lexers (name, module, class, created_at, updated_at) values ('ABAP', 'pygments.lexers.other', 'ABAPLexer', current_timestamp, current_timestamp);
 insert into lexers (name, module, class, created_at, updated_at) values ('ANTLR With ActionScript Target', 'pygments.lexers.parsers', 'AntlrActionScriptLexer', current_timestamp, current_timestamp);

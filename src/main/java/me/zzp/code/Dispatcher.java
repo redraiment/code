@@ -1,59 +1,70 @@
 package me.zzp.code;
 
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ServiceLoader;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import me.zzp.ar.DB;
 import me.zzp.ar.Table;
-import me.zzp.code.action.Service;
 
-public class Dispatcher extends HttpServlet {
-  private final DB dbo;
-  private final List<Service> services;
+public final class Dispatcher extends HttpServlet {
+  private final Map<String, Service> services;
 
   public Dispatcher() {
-    dbo = DB.open("jdbc:sqlite:/Users/redraiment/workspace/project/code/src/main/sql/code.db");
-    Table User = dbo.active("users");
+    DataSource pool;
+    try {
+      InitialContext env = new InitialContext();
+      pool = (DataSource)env.lookup("java:comp/env/jdbc/datasource");
+    } catch(NamingException e) {
+      System.err.println(e.getMessage());
+      System.err.println("Cannot get database source");
+      pool = null;
+    }
+    Service.dbo = DB.open(pool);
+
+    Table User = Service.dbo.active("users");
     User.hasMany("issues").by("user_id");
     User.hasMany("tools").by("user_id");
 
-    Table Issue = dbo.active("issues");
+    Table Issue = Service.dbo.active("issues");
     Issue.belongsTo("user").in("users");
     Issue.hasMany("solutions").by("issue_id");
 
-    Table Solution = dbo.active("solutions");
+    Table Solution = Service.dbo.active("solutions");
     Solution.belongsTo("issue").in("issues");
     Solution.hasMany("tags").by("solution_id");
     Solution.hasAndBelongsToMany("tools").by("tool_id").through("tags");
     Solution.hasMany("snippets").by("solution_id");
 
-    Table Snippet = dbo.active("snippets");
+    Table Snippet = Service.dbo.active("snippets");
     Snippet.belongsTo("user").in("users");
     Snippet.belongsTo("solution").in("solutions");
-    Snippet.hasOne("lexer").in("lexers");
-    
-    services = new LinkedList<>();
+    Snippet.belongsTo("lexer").in("lexers");
+
+    services = new HashMap<>();
     for (Service s : ServiceLoader.load(Service.class)) {
-      s.setDbo(dbo);
-      services.add(s);
+      Url url = s.getClass().getAnnotation(Url.class);
+      services.put(url.value(), s);
     }
   }
-  
+
   private Service some(String path) {
-    String[] resources = path.split("/");
-    for (Service s : services) {
-      if (s.accept(resources)) {
-        return s;
+    for (Map.Entry<String, Service> s : services.entrySet()) {
+      if (path.matches(s.getKey())) {
+        return s.getValue();
       }
     }
     return null;
   }
 
+  // create
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     some(request.getPathInfo()).create(request, response);
