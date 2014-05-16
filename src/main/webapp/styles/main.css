@@ -8,8 +8,7 @@ body {
 
 aside {
     background-color: #F0EEEE;
-    overflow-x: scroll;
-    overflow-y: scroll;
+    overflow: auto;
     position: fixed;
     top: 0;
     width: 15em;
