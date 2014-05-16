@@ -1,5 +1,5 @@
 create table users (
-  id integer primary key autoincrement,
+  id serial primary key,
   name text,
   password text,
   email text,
@@ -10,7 +10,7 @@ create table users (
 );
 
 create table issues (
-  id integer primary key autoincrement,
+  id serial primary key,
   user_id integer,
   parent_id integer,
   name text,
@@ -21,7 +21,7 @@ create table issues (
 );
 
 create table tools (
-  id integer primary key autoincrement,
+  id serial primary key,
   user_id integer,
   parent_id integer,
   name text,
@@ -31,7 +31,7 @@ create table tools (
 );
 
 create table lexers (
-  id integer primary key autoincrement,
+  id serial primary key,
   name text,
   module text,
   class text,
@@ -40,14 +40,14 @@ create table lexers (
 );
 
 create table solutions (
-  id integer primary key autoincrement,
+  id serial primary key,
   issue_id integer,
   created_at timestamp,
   updated_at timestamp
 );
 
 create table tags (
-  id integer primary key autoincrement,
+  id serial primary key,
   solution_id integer,
   tool_id integer,
   created_at timestamp,
@@ -55,7 +55,7 @@ create table tags (
 );
 
 create table snippets (
-  id integer primary key autoincrement,
+  id serial primary key,
   user_id integer,
   solution_id integer,
   lexer_id integer,

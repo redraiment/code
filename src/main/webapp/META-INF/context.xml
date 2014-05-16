@@ -3,8 +3,12 @@
   <Resource name="jdbc/datasource"
             auth="Container"
             type="javax.sql.DataSource"
-            driverClassName="org.sqlite.JDBC"
-            url="jdbc:sqlite:${catalina.base}${file.separator}code.db"
-            factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"
-  />
+            driverClassName="org.postgresql.Driver"
+            url="jdbc:postgresql:code"
+            username="redraiment"
+            password="123"
+            maxActive="5"
+            maxIdle="1"
+            maxWait="-1"
+    />
 </Context>
