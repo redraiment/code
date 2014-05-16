@@ -83,7 +83,7 @@
             <label>版本：</label>
             <select class="version">
               <c:forEach varStatus="status" items="${snippets}">
-                <option value="${status.index}">${snippets.size() - status.index}</option>
+                <option>${snippets.size() - status.index}</option>
               </c:forEach>
             </select>
             <button>改进</button>

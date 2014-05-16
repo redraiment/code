@@ -131,7 +131,7 @@ $(function() {
     });
 
     $('.highlighttable').hide().filter(':first-of-type').show();
-    $('.version').change(function(e) {
-        $(this).parents('section').children('.highlighttable').hide().eq(e.target.value).show();
+    $('.version').change(function() {
+        $(this).parents('section').children('.highlighttable').hide().eq(this.selectedIndex).show();
     });
 });
