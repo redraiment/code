@@ -12,6 +12,7 @@ import me.zzp.code.Service;
 import me.zzp.code.Url;
 import me.zzp.code.bean.Issue;
 import me.zzp.code.bean.Lexer;
+import me.zzp.code.bean.User;
 
 @Url("/[^/]+/[1-9]\\d*")
 public final class Solutions extends Service {
@@ -36,18 +37,19 @@ public final class Solutions extends Service {
     String name = resources[1];
     int id = Integer.valueOf(resources[2]);
     
-    Record user = dbo.active("users").findA("name", name);
-    if (user == null) {
+    Record record = dbo.active("users").findA("name", name);
+    if (record == null) {
       oops(request, response);
     }
+    User user = new User(record);
 
-    Table issues = user.get("issues");
-    Record issue = issues.find(id);
+    Issue issue = user.getIssue(id);
     if (issue == null) {
       oops(request, response);
     }
 
-    request.setAttribute("issue", new Issue(issue));
+    request.setAttribute("issue", issue);
+    request.setAttribute("tags", user.getTools());
     request.setAttribute("lexers", getLexers());
     request.getRequestDispatcher("/view-main").forward(request, response);
   }

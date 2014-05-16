@@ -115,9 +115,9 @@
               </td>
               <td>
                 <select id="tags" multiple="multiple">
-                  <option>Java</option>
-                  <option>JavaScript</option>
-                  <option>XML</option>
+                  <c:forEach var="tag" items="${tags}">
+                    <option>${tag.name}</option>
+                  </c:forEach>
                 </select>
               </td>
             </tr>
