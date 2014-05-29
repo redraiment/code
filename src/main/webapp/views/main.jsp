@@ -75,8 +75,8 @@
         ${issue.description}
       </section>
 
-      <c:forEach var="solution" items="${issue.solutions}">
-        <c:set var="snippets" value="${solution.snippets}" />
+      <c:forEach var="solution" items="${issue.solutions.all}">
+        <c:set var="snippets" value="${solution.snippets.all}" />
         <section>
           <h1>${solution.title}</h1>
           <div>

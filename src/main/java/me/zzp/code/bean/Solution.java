@@ -1,34 +1,17 @@
 package me.zzp.code.bean;
 
-import java.util.List;
 import me.zzp.ar.Record;
 import me.zzp.ar.Table;
 
-public final class Solution extends Model {
-  public Solution(Record model) {
-    super(model);
-  }
-  
-  public Issue getIssue() {
-    return one("issue", Issue.class);
-  }
-  
-  public List<Snippet> getSnippets() {
-    Table snippets = model.get("snippets");
-    return map(snippets.select().orderBy("id desc").all(), Snippet.class);
-  }
-  
-  public List<Tool> getTools() {
-    return list("tools", Tool.class);
-  }
-
-  public String getTitle() {
+public final class Solution {
+  public String getTitle(Record self, Object value) {
+    Table Tool = self.get("tools");
     StringBuilder title = new StringBuilder();
-    for (Tool tool : getTools()) {
+    for (Record tool : Tool.all()) {
       if (title.length() > 0) {
-        title.append("+");
+        title.append('+');
       }
-      title.append(tool.getName());
+      title.append(tool.get("name"));
     }
     return title.toString();
   }

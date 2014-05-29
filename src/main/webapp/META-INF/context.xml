@@ -1,14 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/code">
-  <Resource name="jdbc/datasource"
-            auth="Container"
-            type="javax.sql.DataSource"
-            driverClassName="org.postgresql.Driver"
-            url="jdbc:postgresql:code"
-            username="redraiment"
-            password="123"
-            maxActive="120"
-            maxIdle="20"
-            maxWait="5000"
-    />
-</Context>
+<Context antiJARLocking="true" path="/code"/>
