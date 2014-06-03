@@ -36,6 +36,7 @@
     <url-pattern>/images/*</url-pattern>
     <url-pattern>/styles/*</url-pattern>
     <url-pattern>/scripts/*</url-pattern>
+    <url-pattern>/statics/*</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>view-404</servlet-name>
