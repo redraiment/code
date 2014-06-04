@@ -9,15 +9,15 @@
     <listener-class>me.zzp.ar.el.ResolverSetup</listener-class>
   </listener>
   <listener>
-    <listener-class>me.zzp.code.DatabaseSetup</listener-class>
+    <listener-class>me.zzp.code.setup.Database</listener-class>
+  </listener>
+  <listener>
+    <description>ServletContextListener</description>
+    <listener-class>me.zzp.code.setup.Services</listener-class>
   </listener>
   <servlet>
     <servlet-name>static-files</servlet-name>
     <servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>view-404</servlet-name>
-    <jsp-file>/views/404.jsp</jsp-file>
   </servlet>
   <servlet>
     <servlet-name>view-login</servlet-name>
@@ -28,8 +28,9 @@
     <jsp-file>/views/main.jsp</jsp-file>
   </servlet>
   <servlet>
-    <servlet-name>Snippet</servlet-name>
-    <servlet-class>me.zzp.code.Snippet</servlet-class>
+    <servlet-name>Dispatcher</servlet-name>
+    <servlet-class>me.zzp.jap.Dispatcher</servlet-class>
+    <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
     <servlet-name>static-files</servlet-name>
@@ -37,10 +38,6 @@
     <url-pattern>/styles/*</url-pattern>
     <url-pattern>/scripts/*</url-pattern>
     <url-pattern>/statics/*</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>view-404</servlet-name>
-    <url-pattern>/view-404</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>view-login</servlet-name>
@@ -51,12 +48,12 @@
     <url-pattern>/view-main</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>Snippet</servlet-name>
+    <servlet-name>Dispatcher</servlet-name>
     <url-pattern>/*</url-pattern>
   </servlet-mapping>
   <session-config>
     <session-timeout>
       30
     </session-timeout>
-  </session-config>
+  </session-config>${project.groupId}
 </web-app>

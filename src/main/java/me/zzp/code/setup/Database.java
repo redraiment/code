@@ -1,4 +1,4 @@
-package me.zzp.code;
+package me.zzp.code.setup;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import java.beans.PropertyVetoException;
@@ -11,7 +11,7 @@ import me.zzp.ar.Table;
 import me.zzp.ar.ex.DBOpenException;
 import me.zzp.code.bean.Solution;
 
-public class DatabaseSetup implements ServletContextListener {
+public class Database implements ServletContextListener {
   private DataSource getDataSource() {
     ComboPooledDataSource pool = new ComboPooledDataSource();
     try {
