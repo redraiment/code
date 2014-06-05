@@ -1,6 +1,11 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
 table {
+  margin: auto;
   width: 400px;
-  margin: 0 auto;
   padding: 1em 3em;
   border-radius: 1em;
   border: 1px solid black;
@@ -15,4 +20,12 @@ caption {
 
 input {
   width: 100%;
+}
+
+.error-message {
+  color: red;
+}
+
+button {
+  float: right;
 }

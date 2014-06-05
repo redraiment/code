@@ -14,27 +14,31 @@
     <link rel="stylesheet" type="text/css" href="styles/login.css" />
   </head>
   <body>
-    <form method="post" action="<c:url value="/login" />">
+    <form method="post" action="<c:url value="/" />">
       <table>
         <caption>用户登入</caption>
         <tbody>
           <tr>
             <th>账号：</th>
             <td>
-              <input type="text" />
+              <input name="name" type="text" />
             </td>
           </tr>
           <tr>
             <th>密码：</th>
             <td>
-              <input type="text" />
+              <input name="password" type="password" />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="error-message">
+              <c:out value="${error}" />
             </td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
-            <th>&nbsp;</th>
-            <td>
+            <td colspan="2">
               <button type="submit">提交</button>
             </td>
           </tr>

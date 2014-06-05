@@ -65,6 +65,13 @@ public class Database implements ServletContextListener {
     ServletContext context = e.getServletContext();
     context.setAttribute("pool", pool);
     context.setAttribute("dbo", dbo);
+
+    // cache
+    Table Lexer = dbo.active("lexers");
+    context.setAttribute("lexers", Lexer.all());
+
+    Table Tool = dbo.active("tools");
+    context.setAttribute("tags", Tool.all());
   }
 
   @Override
