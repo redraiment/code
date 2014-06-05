@@ -7,14 +7,14 @@ import me.zzp.ar.Record;
 import me.zzp.ar.Table;
 import me.zzp.jac.Service;
 
-public final class Login extends Service {
-  public Login(HttpServletRequest request, HttpServletResponse response) {
+public final class Session extends Service {
+  public Session(HttpServletRequest request, HttpServletResponse response) {
     super(request, response);
   }
 
   @Override
   public void query() {
-    forward("/login-view");
+    forward("/session-view");
   }
 
   @Override
@@ -26,10 +26,16 @@ public final class Login extends Service {
     Record user = User.first("name = ? and password = ?", name, password);
     if (user != null) {
       session.setAttribute("who", user);
-      redirect("/".concat(name));
+      redirect(String.format("/%s/", name));
     } else {
       request.setAttribute("error", "用户名或密码错误");
-      forward("/login-view");
+      forward("/session-view");
     }
+  }
+
+  @Override
+  public void delete() {
+    session.removeAttribute("who");
+    redirect("/");
   }
 }

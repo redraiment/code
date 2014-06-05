@@ -20,27 +20,11 @@
   <body>
     <aside class="left">
       <h1>问题分类</h1>
-      <menu>
-        <menuitem class="expand">展开</menuitem>
-        <menuitem class="collapse">收拢</menuitem>
-        <menuitem class="add">添加</menuitem>
-        <menuitem class="delete">删除</menuitem>
-        <menuitem class="edit">编辑</menuitem>
-      </menu>
       <ul id="issues" class="ztree"></ul>
     </aside>
 
     <aside class="right">
       <h1>工具分类</h1>
-      <menu>
-        <menuitem class="all">全选</menuitem>
-        <menuitem class="inverse">反选</menuitem>
-        <menuitem class="expand">展开</menuitem>
-        <menuitem class="collapse">收拢</menuitem>
-        <menuitem class="add">添加</menuitem>
-        <menuitem class="delete">删除</menuitem>
-        <menuitem class="edit">编辑</menuitem>
-      </menu>
       <ul id="tools" class="ztree"></ul>
     </aside>
 
@@ -142,6 +126,8 @@
     <script type="text/javascript" src="<c:url value="/scripts/jquery.js" />"></script>
     <script type="text/javascript" src="<c:url value="/scripts/jquery.chosen.js" />"></script>
     <script type="text/javascript" src="<c:url value="/scripts/jquery.ztree.js" />"></script>
-    <script type="text/javascript" src="<c:url value="/scripts/main.js" />"></script>
+    <script type="text/javascript" src="<c:url value="/scripts/code.solution.js" />"></script>
+    <script type="text/javascript" src="<c:url value="/scripts/code.issue.js" />"></script>
+    <script type="text/javascript" src="<c:url value="/scripts/code.tool.js" />"></script>
   </body>
 </html>
