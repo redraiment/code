@@ -48,10 +48,11 @@
       </form>
     </c:if>
     <c:if test="${! empty who}">
-      <form method="delete" action="<c:url value="/" />">
-        <a href="<c:url value="/${who.name}/" />">主页</a>
-        <button type="submit">退出</button>
-      </form>
+      <a href="<c:url value="/${who.name}/" />">主页</a>
+      <button>退出</button>
+      <script type="text/javascript" src="<c:url value="/scripts/jquery.js" />"></script>
+      <script type="text/javascript" src="<c:url value="/scripts/jquery.restful.js" />"></script>
+      <script type="text/javascript" src="<c:url value="/scripts/code.session.js" />"></script>
     </c:if>
   </body>
 </html>

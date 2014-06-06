@@ -1,5 +1,7 @@
 package me.zzp.code;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import me.zzp.ar.DB;
@@ -36,6 +38,12 @@ public final class Session extends Service {
   @Override
   public void delete() {
     session.removeAttribute("who");
-    redirect("/");
+    response.setContentType("text/javascript");
+    response.setCharacterEncoding("utf-8");
+    try (PrintWriter out = response.getWriter()) {
+      out.println("{\"status\": \"success\"}");
+    } catch (IOException e) {
+      System.err.println(e.getMessage());
+    }
   }
 }
